@@ -12,6 +12,7 @@ Currently, the plugin provides a basic rules engine for footstep events. Right n
 * armor.\<slot>.hasKeyword: Does the armor equipped in a specific slot have a keyword?
 * AND: Evaluates to true if all child predicates evaluate to true
 * OR: Evaluates to true if one of the child predicates evaluate to true
+
 In terms of future development, more predicates are rather trivial to add. At runtime, the function I hook has access to the calling Actor object, the original FootstepSet which was going to be used, and any global state.
 
 ## Future Development
