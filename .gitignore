@@ -536,4 +536,5 @@ build/
 contrib/Distribution/**/*.dll
 contrib/Distribution/**/*.pdb
 contrib/Distribution/**/*.pex
-/contrib/Distribution/RuntimeFootstepSounds.7z
+contrib/Distribution/*.7z
+contrib/Distribution/*.zip
