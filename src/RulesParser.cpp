@@ -68,17 +68,21 @@ const std::map<std::string_view, BGSBipedObjectForm::BipedObjectSlot> slot_map =
 
 [[nodiscard]] inline bool ActorIsFemalePredicate::Evaluate(Actor* actor,
                                                            const BGSFootstepSet* orig_fss) const noexcept {
-    return actor->GetActorBase()->IsFemale() != invert;
+    return actor && orig_fss && actor->GetActorBase()->IsFemale() != invert;
 }
 
 [[nodiscard]] inline bool ActorHasKeywordPredicate::Evaluate(Actor* actor,
                                                              const BGSFootstepSet* orig_fss) const noexcept {
-    return actor->HasKeywordString(keyword) != invert;
+    return actor && orig_fss && actor->HasKeywordString(keyword) != invert;
 }
 
 [[nodiscard]] inline bool ArmorHasKeywordPredicate::Evaluate(Actor* actor,
                                                              const BGSFootstepSet* orig_fss) const noexcept {
-    return actor->GetWornArmor(slot)->HasKeywordString(keyword) != invert;
+    if (!actor) {
+        return false;
+    }
+    auto armor = actor->GetWornArmor(slot);
+    return orig_fss && armor && armor->HasKeywordString(keyword) != invert;
 }
 
 [[nodiscard]] inline bool CompoundPredicate::Evaluate(Actor* actor, const BGSFootstepSet* orig_fss) const noexcept {
